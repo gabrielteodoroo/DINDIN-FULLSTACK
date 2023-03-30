@@ -5,12 +5,15 @@ const {
   detailUser,
   updateUser,
   listCategories,
+} = require("../controllers/users");
+const {
   listTransactions,
   detailTransaction,
   postTransaction,
   updateTransaction,
   deleteTransaction,
-} = require("../controllers/users");
+  bankStatement,
+} = require("../controllers/transactions");
 const verifyLogin = require("../middlewares/autentication");
 const validateReqBody = require("../middlewares/validateReqBody");
 const schemaTransaction = require("../schemas/schemaTransaction");
@@ -40,6 +43,7 @@ router.put(
   validateReqBody(schemaTransaction),
   updateTransaction
 );
+router.get("/transaction/bankstatement", bankStatement);
 router.delete("/transaction/:id", deleteTransaction);
 
 module.exports = router;
